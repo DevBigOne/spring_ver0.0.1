@@ -3,12 +3,16 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
 public class MemberService {
     private final MemberRepository memberRepository;
+
 
     public MemberService(MemberRepository memberRepository){ //외부에서 넣을 수 있도록 변경하여 test에서 그대로 사용수 있게 한다. di 관련
         this.memberRepository = memberRepository;
