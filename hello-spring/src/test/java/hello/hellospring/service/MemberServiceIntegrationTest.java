@@ -18,7 +18,6 @@ class MemberServiceIntegrationTest {
     @Autowired
     MemberRepository memberRepository;
     @Test
-    @Commit
     void 회원가입()  { //테스트할 때 단위 단위 분리해서 하고 스프링 컨테이너를 사용하지 말고 하는게 좋은 데스트 일수 있다.
         //Given
         Member member = new Member();

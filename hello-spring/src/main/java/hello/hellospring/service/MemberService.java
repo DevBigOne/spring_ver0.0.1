@@ -22,14 +22,20 @@ public class MemberService {
     /**
      * 회원가입
      */
-    @Transactional
     public Long join(Member member) {
-        validateDuplicateMember(member); //중복 회원 검사, 컨트롤 + 쉬프트 + 알트 + T 기능으로 사용한 것
-        //같은 이름이 있는 중복 회원 X
-        System.out.println("a");
-        memberRepository.save(member);
-        System.out.println("b");
-        return member.getId();
+
+        long start = System.currentTimeMillis();
+
+        try {
+            validateDuplicateMember(member); //중복 회원 검사, 컨트롤 + 쉬프트 + 알트 + T 기능으로 사용한 것
+            //같은 이름이 있는 중복 회원 X
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs= finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        }
 
     }
 
@@ -44,7 +50,14 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMember() {
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs= finish - start;
+            System.out.println("findMembers = " + timeMs + "ms");
+        }
     }
 
     public Optional<Member> findOne(Long memberId) {
