@@ -25,15 +25,16 @@ public class MemberService {
     public Long join(Member member) {
         validateDuplicateMember(member); //중복 회원 검사, 컨트롤 + 쉬프트 + 알트 + T 기능으로 사용한 것
         //같은 이름이 있는 중복 회원 X
-
+        System.out.println("a");
         memberRepository.save(member);
+        System.out.println("b");
         return member.getId();
 
     }
 
     private void validateDuplicateMember(Member member) { //컨트롤 + 쉬프트 + 알트 + T 기능으로 사용한 것
         memberRepository.findByName(member.getName())
-                .ifPresent(member1 -> {
+                .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
     }

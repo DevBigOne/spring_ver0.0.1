@@ -12,13 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @Transactional
 class MemberServiceIntegrationTest {
-    @Autowired MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberService memberService;
+    @Autowired
+    MemberRepository memberRepository;
     @Test
     public void 회원가입() throws Exception { //테스트할 때 단위 단위 분리해서 하고 스프링 컨테이너를 사용하지 말고 하는게 좋은 데스트 일수 있다.
         //Given
         Member member = new Member();
-        member.setName("spring");
+        member.setName("hello");
         //When
         Long saveId = memberService.join(member);
         //Then
